@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <h1>Tela de Cadastro</h1>
+
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br><input style="margin-top:10px" class="button" type="submit" value="Cadastrar">
+    </form><br>
+    <p>Ja tem uma conta? <a href="{% url 'login' %}">Login</a></p>
+</div>
+</div>
+
+{% endblock content %}

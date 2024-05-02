@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Criar/Atualizar Postagem{% endblock %}
+
+{% block content %}  
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body,
+    html {
+        overflow-x: hidden;
+    }
+    .container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .btn-primary {
+        background-color: #fc036b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #ff4499;
+    }
+
+</style>
+<div class="row justify-content-center">
+	<div class="col-md-6">
+		<h1>{% if request.path == '/post-create' %}{% else %}Publicar/Atualizar Post{% endif %}</h1>
+		
+		<form method="post" class="container mt-3" action="{% if request.method == 'POST' %}{% url 'post-create' %}{% endif %}" 
+			enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.as_p }} 
+			<button class="btn btn-primary" type="submit">Publicar</button> 
+		</form>
+
+	</div>
+	
+</div>
+
+{% endblock content %}
