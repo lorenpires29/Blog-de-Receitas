@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <h1 class="logo"></h1>
+        <ul class="nav-links">
+            <li class="active"><a href="#"></a>Home</li>
+            <li class="links"><a href="{% url 'post-list' %}">Blog</a></li>
+            <li class="ctn"><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+        <img src="img_blog/menu.png" alt="" class="menu-btn">
+    </nav>
+<header>
+    <div class="header-content">
+        <h2>Seja Bem Vindo!!</h2>
+        <div class="line"></div>
+        <h1>My Blog Confeitaria</h1>
+        <a href="{% url 'post-list' %}" class="ctn">Leia mais..</a>
+    </div>
+</header>
+
+<section class="main">
+    <div class="row">
+        <div class="col">
+            <h1>Bombom</h1>
+            <img src="{% static 'img_blog/doces9.jpg' %}" width="300" height="180">
+            <p>Bombons recheados com chocolate ao leite, gelatina, nozes, frutas, licor e muito mais</p>
+        </div>
+        <div class="col">
+            <h1>Gelatina</h1>
+            <img src="{% static 'img_blog/doces10.jpg' %}" width="300" height="180">
+            <p>A gelatina é uma sobremesa bem simples de fazer, além de ser super saborosa.</p>
+        </div>
+        <div class="col">
+            <h1>Torta de Frutas Vermelhas</h1>
+            <img src="{% static 'img_blog/doces11.jpg' %}" width="300" height="180">
+            <p>Aprenda a fazer uma massa simples para rechear com geleia de frutas vermelha e cobrir com tirinhas que dão um charme</p>
+        </div>
+    </div>
+</section>
+
+<section class="explore">
+    <div class="explore-content">
+        <h1>QUEM SOMOS</h1>
+        <div class="line"></div>
+        <p>Olá! Somos uma confeitaria dedicada a trazer alegria através de nossas criações açucaradas.
+            Combinamos ingredientes frescos, técnicas tradicionais e um toque de criatividade para oferecer delícias irresistíveis.
+            Nossa equipe é apaixonada por doces e está empenhada em criar experiências memoráveis para todos os nossos clientes.
+            Seja bem-vindo e deixe-nos adoçar o seu dia!</p>
+    </div>
+</section>
+<section class="tours">
+    <div class="row">
+        <div class="col content-col">
+            <h1>Confeitaria Gourmet</h1>
+            <p>Seja bem-vindo à nossa confeitaria gourmet, onde os sabores são refinados e as delícias são irresistíveis.
+                Venha saborear momentos especiais conosco.</p>
+            <div class="col image-col">
+                <div class="image-gallery">
+                    <img src="{% static 'img_blog/ovos (0_0).webp' %}" alt="" width="300px" height="250px">
+                    <img src="{% static 'img_blog/ovos (0_1).webp' %}" alt="" width="300px" height="250px">
+                    <img src="{% static 'img_blog/ovos (0_2).webp' %}" alt="" width="300px" height="250px">
+                    <img src="{% static 'img_blog/ovos (1_0).webp' %}" alt="" width="300px" height="250px">
+                    <img src="{% static 'img_blog/ovos (1_1).webp' %}" alt="" width="300px" height="250px">
+                    <img src="{% static 'img_blog/ovos (1_2).webp' %}" alt="" width="300px" height="250px">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div id="footer_content">
+        <div id="footer_contacts">
+            <h1>Redes Sociais</h1>
+            <div id="footer_social_media">
+                <a href="https://www.instagram.com/confeitariaroof/" class="footer-link" id="instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/groups/vivadeconfeitaria/" class="footer-link" id="facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://api.whatsapp.com/send/?phone=5582999179197&text=Ol%C3%A1%2C+deixe+sua+mensagem+para+nosso+atendimento+de+auxiliar.&type=phone_number&app_absent=0" class="footer-link" id="whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+        <ul class="footer-list">
+            <li><h3>Blog</h3></li>
+            <li><a href="#" class="footer-link">Confeitaria Tradicional</a></li>
+            <li><a href="#" class="footer-link">Confeitaria Gourmet </a></li>
+            <li><a href="#" class="footer-link">Confeitaria Artesanal</a></li>
+        </ul>
+        <ul class="footer-list">
+            <li><h3>Produtos</h3></li>
+            <li><a href="#" class="footer-link">Doces</a></li>
+            <li><a href="#" class="footer-link">Salgados</a></li>
+            <li><a href="#" class="footer-link">Tortas</a></li>
+            <li><a href="#" class="footer-link">Sorvete</a></li>
+        </ul>
+        <div id="footer_subscribe">
+            <h3>Entre em contato conosco</h3>
+            <p>Insira seu e-mail para receber notificações sobre nossas novas soluções</p>
+            <div id="input_group">
+                <input type="email" id="email">
+                <button>
+                    <i class="fa-regular fa-envelope"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    const menuBtn = document.querySelector('.menu-btn')
+    const navlinks = document.querySelector('.nav-links')
+    menuBtn.addEventListener('click',()=>{
+        navlinks.classList.toggle('open');
+    })
+</script>
+</body>
+</html>

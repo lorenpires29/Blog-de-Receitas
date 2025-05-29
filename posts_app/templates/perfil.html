@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Meu Perfil{% endblock %}
+
+{% block content %}
+    <style>
+        .caixa {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: flex-start; /* Alterado para alinhar os itens no topo */
+			border: 0;
+			border-bottom: 1px solid rgba(0, 0, 0, .08);
+			margin-bottom: 30px;
+			padding-bottom: 30px;
+		}
+        .perfil{
+            background-color: whitesmoke;
+            flex-basis: 30%;
+			overflow: hidden;
+			padding: 1em 2em;
+        }
+        .container{
+            flex-basis: 50%; /* Definindo uma largura relativa para o conteúdo */
+			padding: 0em;
+			text-align: left; /* Alinhando o texto à esquerda */
+        }
+
+        .container .texto{
+			text-align: justify;  
+			white-space: pre-line;
+		}
+
+        @media screen and (max-width: 850px) {
+
+            .caixa{
+				display: block;
+            }
+            .container{
+                width: 100%;
+				padding: 0;
+				align-items: center;
+				margin-top: 1em;
+            }
+        }
+
+    </style>
+    {% load static %}
+
+    <a class="btn btn-success" href="{% url 'post-create' %}" style="background-color: #fc036b; font-size: 20px;">Criar um Post</a>
+
+    <div class="caixa">
+        <div class="perfil">
+        <h1>Meu Perfil</h1>
+        <img src="{% static 'img_blog/usuario.jpg' %}" alt="Imagem de perfil">
+        <p><strong>Nome de Usuário:</strong><font color="blue">@{{ user_profile.username}}</font>
+        </p>
+        <p><strong>Email:</strong> {{ user_profile.email }}</p>
+        </div>
+        
+        <div class="container">
+            <h1 class="title-border">Meus Posts</h1><hr>
+            
+            {% for post in user_posts %}
+            <article class="card-post">
+                <div class="box-img">
+                    {% if post.img %}
+                    <img src="{{ post.img.url }}" alt="Descrição da imagem" width="30%">
+                    {% endif %}
+                </div>
+                <div class="box-content">
+                    <font color="blue">@{{ post.autor }}</font>
+                    <h3>{{ post.titulo }}</h3>
+                    <p class="texto">{{ post.descriçao }}</p>
+                    <p>{{ post.data }}</p>
+                    <a class="btn btn-warning" href="{% url 'post-update' post.id %}">Atualizar</a>
+                    <a class="btn btn-danger" href="{% url 'post-delete' post.id %}">Deletar</a><br>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+

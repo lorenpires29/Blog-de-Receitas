@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista Postagens{% endblock %}
+
+{% block content %}
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Poppins');
+	
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+	
+		body{
+			overflow-x: hidden;
+		}
+	
+		.title-border {
+			text-align: center;
+			font-size: 40px;
+		}
+		.buscar .btn{
+			background-color: #fc036b; font-size: 20px;
+			color: white;
+		}
+		.container {
+			width: 100%;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: whitesmoke;
+		}
+	
+		.card-post {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: flex-start; /* Alterado para alinhar os itens no topo */
+			border: 0;
+			border-bottom: 1px solid rgba(0, 0, 0, .08);
+			margin-bottom: 30px;
+			padding-bottom: 30px;
+		}
+	
+		.card-post .box-img {
+			flex-basis: 50%; /* Definindo uma largura relativa para a imagem */
+			border-radius: 4px;
+			overflow: hidden;
+			padding: 3em 0em;
+		}
+	
+		.card-post .box-img img {
+			width: 80%; /* Definindo a largura da imagem como 100% do contêiner */
+			height: 50%; /* Permitindo que a altura seja ajustada automaticamente para manter a proporção */
+			border-radius: 4px; /* Arredondando os cantos da imagem */
+		}
+	
+		.card-post .box-content {
+			flex-basis: 50%; /* Definindo uma largura relativa para o conteúdo */
+			padding: 2em 0em;
+			text-align: left; /* Alinhando o texto à esquerda */
+		}
+
+		.card-post .box-content h3{
+			margin: 0 0 1em 0;
+		}
+		
+		.card-post .box-content .texto{
+			text-align: justify;  
+			white-space: pre-line;
+		}
+		img {
+			transition: transform .3s ease;
+		}
+	
+		img:hover {
+			transform: scale(1.1);
+		}
+	
+		@media only screen and (max-width: 850px) {
+			.card-post {
+				display: block;
+			}
+			.card-post .box-img,
+			.card-post .box-content {
+				width: 100%;
+				padding: 0;
+				align-items: center;
+				margin-top: 1em;
+			}
+		}
+	</style>
+
+	<div class="buscar">
+		<form method="GET" action="{% url 'post-list' %}" >
+			<input type="text" name="q" placeholder="🔍Buscar por título da Receita...">
+			<button type="submit" class="btn">Buscar</button>
+		</form>
+	</div>
+	<div class="container">
+		<a class="btn btn-success" href="{% url 'post-create' %}" style="background-color: #fc036b; font-size: 20px;" >Criar um Post</a>
+		<h1 class="title-border">Receitas</h1><hr>
+		
+		{% for post in posts %}
+		<article class="card-post">
+			<div class="box-img">
+				{% if post.img %}
+				<img src="{{post.img.url}}" alt="Descrição da imagem">
+				{% endif %}
+			</div>
+			<div class="box-content">
+				<font color="blue">@{{post.autor}}</font>
+				<h3>{{post.titulo}}</h3> 
+				<p class="texto">{{post.descriçao}}</p>
+				<p>{{post.data}}</p>
+				
+			</div>
+			
+		</article>
+
+		{% endfor %}
+
+	</div>
+
+	<nav aria-label="..." >
+        <ul class="pagination" >
+            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}"  >
+                <a class="page-link" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}" tabindex="-1" >Voltar</a>
+            </li>
+            {% for page in paginator.page_range %}
+                <li class="page-item {% if page == page_obj.number %}active{% endif %}">
+                    <a class="page-link" href="?page={{ page }}"  style="background-color: #fc036b;">{{ page }} {% if page == page_obj.number %}<span class="sr-only">(current)</span>{% endif %}</a>
+                </li>
+            {% endfor %}
+            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}" >
+                <a class="page-link" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% endif %}" >Próximo</a>
+            </li>
+        </ul>
+    </nav>
+{% endblock content %}
